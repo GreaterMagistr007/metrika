@@ -34,6 +34,11 @@ if [ "$(docker ps -q -f name=project_server)" ]; then
     docker exec -it project_server bash -c "service nginx restart"
     docker exec -it project_server bash -c "service apache2 restart"
 
+    # Ставим Composer
+    docker exec -it project_server bash -c "apt install php-cli unzip -y"
+    docker exec -it project_server bash -c "curl -sS https://getcomposer.org/installer -o composer-setup.php"
+    docker exec -it project_server bash -c "php composer-setup.php --install-dir=/usr/local/bin --filename=composer"
+
 
 
     echo "Скрипт успешно отработал и понаставил всякой херни в контейнеры"
