@@ -14,7 +14,11 @@
 
 <h2>Инструкция:</h2>
 1) Выполнить<br><b>git clone https://github.com/GreaterMagistr007/metrika/ --recursive && cd my-site && git submodule foreach --recursive git checkout master</b><br>
-   в нужной директории. В ней создастся папка "my-site"
+   в нужной директории. В ней создастся папка "my-site"<br>
 2) скопировать содержимое <b>/etc/hosts </b> в конец своего hosts<br>
    * Windows: C:\Windows\System32\drivers\etc файл hosts<br>
-   * Linux: /etc/hosts
+   * Linux: /etc/hosts<br>
+3) Выполнить команду <b>docker-compose up </b> и смотреть на магию<br>
+4) при первом запуске настроить backend: <b>./bin/install-backend.sh </b><br>
+5) по адресу <b>http://phpmyadmin.loc:8080/ </b> резко стал доступен phpmyadmin<br>
+6) по адресу <b>http://metrika.loc/ </b> резко стал доступен управляющий ресурс<br>

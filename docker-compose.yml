@@ -1,0 +1,65 @@
+services:
+  mariadb:
+    image: mariadb:11.6.1-rc
+    container_name: ${MYSQL_CONTAINER_NAME}
+    restart: "always"
+    ports:
+      - 3306:3306
+    volumes:
+      - /docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    command: --sql_mode=''
+    networks:
+      sitenet:
+        ipv4_address: 192.168.191.3
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: ${PHPMYADM_CONTAINER_NAME}
+    restart: always
+    # Вход без авторизации
+    environment:
+      - PMA_HOST=${MYSQL_CONTAINER_NAME}
+      - PMA_USER=${MYSQL_ROOT_NAME}
+      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - mariadb
+    ports:
+      - 8080:80
+    networks:
+      sitenet:
+        ipv4_address: 192.168.191.4
+
+  server:
+    build:
+      context: ./etc/ubuntu
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_SERVER_CONTAINER_NAME}
+    volumes:
+      - ./:/home/user/services/
+    environment:
+      COMPOSER_ALLOW_SUPERUSER: 1
+    extra_hosts:
+      - "metrika.loc:127.0.0.1"
+      - "phpmyadmin.loc:192.168.191.4"
+      - "${MYSQL_CONTAINER_NAME}:192.168.191.3"
+    depends_on:
+      - mariadb
+    ports:
+      - 80:80
+      - 443:443
+    tty: true
+    networks:
+      sitenet:
+        ipv4_address: 192.168.191.2
+
+networks:
+  sitenet:
+    name: metrika_network
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.191.0/24"
+          gateway: "192.168.191.1"
