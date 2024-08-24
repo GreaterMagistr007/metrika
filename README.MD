@@ -13,5 +13,5 @@
 Имеет структуру монолита, однако будет содержать папки с кодовой базой, выполняемой отдельно от функционала самого проекта.
 
 <h2>Инструкция:</h2>
-1) Выполнить git clone https://github.com/GreaterMagistr007/metrika/ --recursive && cd my-site && git submodule foreach --recursive git checkout master
+1) Выполнить<br><b>git clone https://github.com/GreaterMagistr007/metrika/ --recursive && cd my-site && git submodule foreach --recursive git checkout master</b><br>
    в нужной директории. В ней создастся папка "my-site"
