@@ -1,4 +1,4 @@
 [submodule metrika.loc"]
-	path = server.loc
+	path = metrika.loc
 	url = https://github.com/GreaterMagistr007/metrika.loc"].loc
 	branch = master
