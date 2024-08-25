@@ -59,6 +59,15 @@ EXPOSE 80 443
 # Отключение стандартного сайта в Nginx и запуск PHP-FPM, Apache и Nginx
 CMD service php8.3-fpm start && a2enmod php8.3 && service apache2 restart && tail -F /var/log/nginx/access.log /var/log/nginx/error.log
 
+## Копирование файлов проекта
+#COPY . /home/user/services/
+
+# Устанавливаем зависимости composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+WORKDIR /home/user/services/metrika.loc
+#CMD composer install
+
 # Копируем файлы в контейнер
 #COPY . /home/user/services/
 
