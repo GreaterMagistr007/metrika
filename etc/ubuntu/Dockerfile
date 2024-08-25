@@ -67,5 +67,6 @@ WORKDIR /home/user/services/metrika.loc/
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN npm install -g npm@latest
+RUN npm install
 
 CMD composer install && php artisan migrate && service php8.3-fpm start && a2enmod php8.3 && service apache2 restart && tail -F /var/log/nginx/access.log /var/log/nginx/error.log
