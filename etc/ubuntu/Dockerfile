@@ -59,42 +59,10 @@ EXPOSE 80 443
 # Отключение стандартного сайта в Nginx и запуск PHP-FPM, Apache и Nginx
 CMD service php8.3-fpm start && a2enmod php8.3 && service apache2 restart && tail -F /var/log/nginx/access.log /var/log/nginx/error.log
 
-## Копирование файлов проекта
-#COPY . /home/user/services/
-
 # Устанавливаем зависимости composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-ENV COMPOSER_ALLOW_SUPERUSER=1
-WORKDIR /home/user/services/metrika.loc
-#CMD composer install
-
-# Копируем файлы в контейнер
-#COPY . /home/user/services/
-
-### Apache конфигурация виртуального хоста для "metrika.loc"
-### Создаем файл конфигурации в /etc/apache2/sites-available/
-#COPY /home/user/services/apache.conf /etc/apache2/sites-available/metrika.loc.conf
-### Включаем виртуальный хост
-#RUN a2ensite metrika.loc.conf
-### Перезапуск Apache
-#RUN systemctl restart apache2
-##
-### Nginx конфигурация
-##COPY /home/user/services/nginx.conf /etc/nginx/conf.d/metrika.loc.conf
-##RUN ln -s /etc/nginx/conf.d/metrika.loc.conf /etc/nginx/sites-enabled/
-#
-## Устанавливаем composer
-#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 #ENV COMPOSER_ALLOW_SUPERUSER=1
-##RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-#
-#CMD ["php-fpm", "--nodaemonize"]
-#
-## Устанавливаем зависимости composer
-##WORKDIR /home/user/services/metrika.loc
-##RUN composer install --no-dev
-#
-##RUN chmod +x /home/user/services/etc/ubuntu/start.sh
-## Запускаем сервер при старте контейнера
-##CMD chmod +x /home/user/services/etc/ubuntu/start.sh
-##CMD /home/user/services/etc/ubuntu/start.sh
+WORKDIR /home/user/services/metrika.loc/
+CMD composer install
+#CMD ["php", "-S", "0.0.0.0:8000"]
+CMD service php8.3-fpm start && a2enmod php8.3 && service apache2 restart && tail -F /var/log/nginx/access.log /var/log/nginx/error.log
