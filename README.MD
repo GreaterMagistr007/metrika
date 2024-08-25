@@ -19,6 +19,6 @@
    * Windows: C:\Windows\System32\drivers\etc файл hosts<br>
    * Linux: /etc/hosts<br>
 3) Выполнить команду <b>docker-compose up </b> и смотреть на магию<br>
-4) при первом запуске настроить backend: <b>./bin/install-backend.sh </b><br>
+4) <b>при первом запуске</b> настроить backend: <b>./bin/install-backend.sh </b><br>
 5) по адресу <b>http://phpmyadmin.loc:8080/ </b> резко стал доступен phpmyadmin<br>
 6) по адресу <b>http://metrika.loc/ </b> резко стал доступен управляющий ресурс<br>
