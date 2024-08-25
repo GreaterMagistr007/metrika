@@ -62,4 +62,4 @@ CMD service php8.3-fpm start && a2enmod php8.3 && service apache2 restart && tai
 # Устанавливаем зависимости composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 WORKDIR /home/user/services/metrika.loc/
-CMD composer install && service php8.3-fpm start && a2enmod php8.3 && service apache2 restart && tail -F /var/log/nginx/access.log /var/log/nginx/error.log
+CMD composer install && php artisan migrate && service php8.3-fpm start && a2enmod php8.3 && service apache2 restart && tail -F /var/log/nginx/access.log /var/log/nginx/error.log
