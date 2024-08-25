@@ -13,12 +13,12 @@
 Имеет структуру монолита, однако будет содержать папки с кодовой базой, выполняемой отдельно от функционала самого проекта.
 
 <h2>Инструкция:</h2>
-1) Выполнить<br><b>git clone https://github.com/GreaterMagistr007/metrika --recursive && cd metrika && git submodule foreach --recursive git checkout master && docker-compose up</b><br>
+1) Выполнить<br><b>git clone https://github.com/GreaterMagistr007/metrika --recursive && cd metrika && git submodule foreach --recursive git checkout master && docker-compose up -d</b><br>
    в нужной директории. В ней создастся папка "metrika"<br>
-2) скопировать содержимое <b>/etc/hosts </b> в конец своего hosts<br>
+2) Смотреть на магию.
+3) скопировать содержимое <b>/etc/hosts </b> в конец своего hosts<br>
    * Windows: C:\Windows\System32\drivers\etc файл hosts<br>
    * Linux: /etc/hosts<br>
-3) Выполнить команду <b>docker-compose up </b> и смотреть на магию<br>
-4) <b>при первом запуске</b> настроить backend: <b>./bin/install-backend.sh </b><br>
+4) При последующих запусках выполнять команду <b>docker-compose up </b><br>
 5) по адресу <b>http://phpmyadmin.loc:8080/ </b> резко стал доступен phpmyadmin<br>
 6) по адресу <b>http://metrika.loc/ </b> резко стал доступен управляющий ресурс<br>
