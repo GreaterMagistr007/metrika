@@ -13,7 +13,7 @@
 Имеет структуру монолита, однако будет содержать папки с кодовой базой, выполняемой отдельно от функционала самого проекта.
 
 <h2>Инструкция:</h2>
-1) Выполнить<br><b>git clone https://github.com/GreaterMagistr007/metrika --recursive && cd metrika && git submodule foreach --recursive git checkout master</b><br>
+1) Выполнить<br><b>git clone https://github.com/GreaterMagistr007/metrika --recursive && cd metrika && git submodule foreach --recursive git checkout master && docker-compose up</b><br>
    в нужной директории. В ней создастся папка "metrika"<br>
 2) скопировать содержимое <b>/etc/hosts </b> в конец своего hosts<br>
    * Windows: C:\Windows\System32\drivers\etc файл hosts<br>
